@@ -13,7 +13,7 @@ print(f"Connecting to host URL {args.url}")
 print(umbridge.supported_models(args.url))
 
 # Set up a model by connecting to URL and selecting the "forward" model
-model = umbridge.HTTPModel(args.url, "forward")
+model = umbridge.HTTPModel(args.url, "posterior")
 
 print(model.get_input_sizes())
 print(model.get_output_sizes())
@@ -23,11 +23,11 @@ param = [[100.0, 18.0]]
 # Simple model evaluation without config
 print(model(param))
 
-# Model evaluation with configuration parameters
-config={"vtk_output": True, "level": 1}
-print(model(param, config))
+# # Model evaluation with configuration parameters
+# config={"vtk_output": True, "level": 1}
+# print(model(param, config))
 
-# If model supports Jacobian action,
-# apply Jacobian of output zero with respect to input zero to a vector
-if model.supports_apply_jacobian():
-  print(model.apply_jacobian(0, 0, param, [1.0, 4.0]))
+# # If model supports Jacobian action,
+# # apply Jacobian of output zero with respect to input zero to a vector
+# if model.supports_apply_jacobian():
+#   print(model.apply_jacobian(0, 0, param, [1.0, 4.0]))
